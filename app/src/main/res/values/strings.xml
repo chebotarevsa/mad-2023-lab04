@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Lab4</string>
-    <string name="questionField">Вопрос: ...</string>
-    <string name="hintField">Подсказка: ...</string>
-    <string name="answerField">Ответ: ...</string>
-    <string name="translationField">Перевод: ...</string>
+    <string name="questionField">Вопрос: …</string>
+    <string name="hintField">Подсказка: …</string>
+    <string name="answerField">Ответ: …</string>
+    <string name="translationField">Перевод: …</string>
+    <string name="addingCard">Добавление карточки</string>
+    <string name="editingCard">Редактирование карточки</string>
+    <string name="seeingCard">Просмотр карточки</string>
 </resources>
