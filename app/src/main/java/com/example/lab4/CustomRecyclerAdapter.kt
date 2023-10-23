@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class CustomRecyclerAdapter(private val cards: List<Card>) :
+class CustomRecyclerAdapter(private var cards: List<Card>) :
     RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageThumbnail: ImageView = itemView.findViewById(R.id.thumbnail)
@@ -28,16 +28,23 @@ class CustomRecyclerAdapter(private val cards: List<Card>) :
     override fun getItemCount() = cards.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.largeTextView.text = cards[position].answer
-        holder.smallTextView.text = cards[position].translation
+        val card = cards[position]
+        if (card.imageURI != null) {
+            holder.imageThumbnail.setImageURI(cards[position].imageURI)
+        } else {
+            holder.imageThumbnail.setImageResource(R.drawable.wallpapericon)
+        }
+        holder.largeTextView.text = card.answer
+        holder.smallTextView.text = card.translation
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, SeeCardActivity::class.java)
-            intent.putExtra("id", cards[position].id)
-            intent.putExtra("question", cards[position].question)
-            intent.putExtra("example", cards[position].example)
-            intent.putExtra("answer", cards[position].answer)
-            intent.putExtra("translation", cards[position].translation)
+            intent.putExtra("position", position)
             ContextCompat.startActivity(it.context, intent, Bundle())
         }
+    }
+
+    fun setCards(cards: List<Card>) {
+        this.cards = cards
+        notifyDataSetChanged()
     }
 }

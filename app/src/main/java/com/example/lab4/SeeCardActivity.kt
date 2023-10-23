@@ -14,25 +14,22 @@ class SeeCardActivity : AppCompatActivity() {
         binding = ActivitySeeCardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val question = intent.getStringExtra("question")
-        val example = intent.getStringExtra("example")
-        val answer = intent.getStringExtra("answer")
-        val translation = intent.getStringExtra("translation")
+        val position = intent.getIntExtra("position", 0)
+        val cards = Model.cards
+        val card = cards.get(position)
 
         binding.cardQuestion.text =
-            getString(R.string.questionField, question)
+            getString(R.string.questionField, card.question)
         binding.cardExample.text =
-            getString(R.string.exampleField, example)
-        binding.cardAnswer.text = getString(R.string.answerField, answer)
+            getString(R.string.exampleField, card.example)
+        binding.cardAnswer.text = getString(R.string.answerField, card.answer)
         binding.cardTranslation.text =
-            getString(R.string.translationField, translation)
+            getString(R.string.translationField, card.translation)
+        binding.cardThumbnail.setImageURI(card.imageURI)
 
         binding.editButton.setOnClickListener {
             Intent(this, EditCardActivity::class.java).apply {
-                putExtra("question", question)
-                putExtra("example", example)
-                putExtra("answer", answer)
-                putExtra("translation", translation)
+                putExtra("position", position)
             }.also {
                 startActivity(it)
             }
