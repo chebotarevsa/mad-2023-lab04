@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="24dp"
     tools:context=".EditCardActivity">
 
 
@@ -15,8 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        />
+        app:layout_constraintVertical_bias="0.1" />
 
     <ImageView
         android:layout_width="200sp"
@@ -29,60 +29,77 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/questionField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите вопрос"
-        android:inputType="text"
+        android:hint="@string/enterQuestion"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:minLines="1"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/exampleField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите подсказку"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24sp"
+        android:hint="@string/enterExample"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+
+        android:minLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintTop_toBottomOf="@id/questionField"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/answerField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите ответ"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24sp"
+        android:hint="@string/enterAnswer"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:minLines="1"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintTop_toBottomOf="@id/exampleField"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/translationField"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Введите перевод"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24sp"
+        android:hint="@string/enterTranslation"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:minLines="1"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintTop_toBottomOf="@id/answerField"
+        android:importantForAutofill="no" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/saveicon"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:maxImageSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
-
-
+        app:layout_constraintVertical_bias="1"
+        app:maxImageSize="32sp"
+        android:contentDescription="Кнопка сохранения карточки" />
 </androidx.constraintlayout.widget.ConstraintLayout>
