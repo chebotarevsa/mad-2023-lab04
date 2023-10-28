@@ -28,8 +28,6 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.RecyclerView.layoutManager = layoutManager
         binding.RecyclerView.adapter = adapter
-        //binding.RecyclerView.seton
-
 
     val button = binding.root.findViewById<Button>(R.id.button)
     button.setOnClickListener {
@@ -40,15 +38,6 @@ class MainActivity : AppCompatActivity() {
 
     //удаление карточки
 //    val delete = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_delete)
-
-
-    //нажатие на карточку
-    fun onCardClicked(termCard: TermCard) {
-        val intent = Intent(this, ViewCard::class.java)
-        intent.putExtra("cardId", termCard.id)
-        startActivity(intent)
-    }
-
 
     override fun onResume() {
         super.onResume()

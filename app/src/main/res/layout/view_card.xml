@@ -23,13 +23,13 @@
         android:id="@+id/button"
         android:layout_width="63dp"
         android:layout_height="55dp"
-        android:text="✓"
+        android:layout_marginBottom="10dp"
+        android:drawableLeft="@drawable/ic_edit"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.895" />
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/question"
@@ -77,8 +77,8 @@
 
     <TextView
         android:id="@+id/translateView"
-        android:layout_width="153dp"
-        android:layout_height="15dp"
+        android:layout_width="152dp"
+        android:layout_height="24dp"
         android:layout_marginStart="26dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/translate"

@@ -1,5 +1,7 @@
 package com.example.lab4mobile.Data
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -7,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.lab4mobile.R
+import com.example.lab4mobile.ViewCard
 import com.example.lab4mobile.databinding.ItemCardBinding
 
 
@@ -32,6 +35,7 @@ class CardsAdapter: RecyclerView.Adapter<CardsAdapter.CardHolder>()  {
         return _list.size
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
         val item = _list[position]
         holder.binding.cardsNameTextView.text = item.answer
@@ -43,6 +47,16 @@ class CardsAdapter: RecyclerView.Adapter<CardsAdapter.CardHolder>()  {
 
         //нажатие на элемент карточки
         holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ViewCard::class.java)
+            //передача данных в интент
+            intent.putExtra("question", item.question)
+            intent.putExtra("example", item.example)
+            intent.putExtra("answer", item.answer)
+            intent.putExtra("translate", item.translate)
+            intent.putExtra("image", item.image)
+            intent.putExtra("id", item.id)
+
+            holder.itemView.context.startActivity(intent)
         }
 
         //установка стиля при нажатии/отпускании
