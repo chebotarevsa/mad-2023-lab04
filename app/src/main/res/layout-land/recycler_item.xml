@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/textViewLarge"
-            android:layout_width="300sp"
+            android:layout_width="450sp"
             android:layout_height="wrap_content"
             android:text="@string/textPlaceholder"
             android:textAppearance="?android:attr/textAppearanceLarge" />
