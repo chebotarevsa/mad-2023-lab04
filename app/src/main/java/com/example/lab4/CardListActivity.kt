@@ -22,10 +22,6 @@ class CardListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = CustomRecyclerAdapter(cards)
         recyclerView.adapter = adapter
-        /*
-                contentURI:URI
-                 imageView.setImageURI(contentURI);*/
-
 
         binding.addbuttonid.setOnClickListener {
             Intent(this, AddCardActivity::class.java).also {
@@ -36,7 +32,7 @@ class CardListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        adapter.setCards(Model.cards)
+        adapter.refreshCardsViewWith(Model.cards)
     }
 }
 

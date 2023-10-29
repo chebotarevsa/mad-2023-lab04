@@ -1,5 +1,6 @@
 package com.example.lab4
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+
 
 class CustomRecyclerAdapter(private var cards: List<Card>) :
     RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageThumbnail: ImageView = itemView.findViewById(R.id.thumbnail)
+        val thumbnailImage: ImageView = itemView.findViewById(R.id.thumbnail)
         val largeTextView: TextView = itemView.findViewById(R.id.textViewLarge)
         val smallTextView: TextView = itemView.findViewById(R.id.textViewSmall)
-        val imageDeleter: ImageView = itemView.findViewById(R.id.deleter)
+        val deleteImage: ImageView = itemView.findViewById(R.id.deleter)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -30,9 +33,9 @@ class CustomRecyclerAdapter(private var cards: List<Card>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val card = cards[position]
         if (card.imageURI != null) {
-            holder.imageThumbnail.setImageURI(cards[position].imageURI)
+            holder.thumbnailImage.setImageURI(cards[position].imageURI)
         } else {
-            holder.imageThumbnail.setImageResource(R.drawable.wallpapericon)
+            holder.thumbnailImage.setImageResource(R.drawable.wallpapericon)
         }
         holder.largeTextView.text = card.answer
         holder.smallTextView.text = card.translation
@@ -41,9 +44,22 @@ class CustomRecyclerAdapter(private var cards: List<Card>) :
             intent.putExtra("position", position)
             ContextCompat.startActivity(it.context, intent, Bundle())
         }
+        holder.deleteImage.setOnClickListener {
+            AlertDialog.Builder(it.context).setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Вы действительно хотите удалить карточку?")
+                .setMessage("Будет удалена карточка:\n ${card.answer} / ${card.translation}")
+                .setPositiveButton("Да") { _, _ ->
+                    Model.removeCard(card.id)
+                    refreshCardsViewWith(Model.cards)
+                }.setNegativeButton("Нет") { _, _ ->
+                    Toast.makeText(
+                        it.context, "Удаление отменено", Toast.LENGTH_LONG
+                    ).show()
+                }.show()
+        }
     }
 
-    fun setCards(cards: List<Card>) {
+    fun refreshCardsViewWith(cards: List<Card>) {
         this.cards = cards
         notifyDataSetChanged()
     }

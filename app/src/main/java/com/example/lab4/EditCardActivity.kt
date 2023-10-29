@@ -24,15 +24,40 @@ class EditCardActivity : AppCompatActivity() {
         binding.exampleField.setText(card.example)
         binding.answerField.setText(card.answer)
         binding.translationField.setText(card.translation)
+        binding.cardImage.setImageURI(card.imageURI)
+        imageUri = card.imageURI
+
+        binding.cardImage.setOnClickListener {
+            getSystemContent.launch("image/*")
+        }
 
         binding.saveButton.setOnClickListener {
+            val question = when {
+                binding.questionField.text.toString()
+                    .isNotEmpty() -> binding.questionField.text.toString()
+
+                else -> "Поле вопроса отсутствует"
+            }
+            val example = when {
+                binding.exampleField.text.toString()
+                    .isNotEmpty() -> binding.exampleField.text.toString()
+
+                else -> "Поле примера отсутствует"
+            }
+            val answer = when {
+                binding.answerField.text.toString()
+                    .isNotEmpty() -> binding.answerField.text.toString()
+
+                else -> "Поле ответа отсутствует"
+            }
+            val translation = when {
+                binding.translationField.text.toString()
+                    .isNotEmpty() -> binding.translationField.text.toString()
+
+                else -> "Поле перевода отсутствует"
+            }
             val newCard = Model.updateCard(
-                card,
-                binding.questionField.text.toString(),
-                binding.exampleField.text.toString(),
-                binding.answerField.text.toString(),
-                binding.translationField.text.toString(),
-                imageUri
+                card, question, example, answer, translation, imageUri
             )
             Model.updateCardList(position, newCard)
             Intent(this, SeeCardActivity::class.java).apply {
@@ -43,9 +68,6 @@ class EditCardActivity : AppCompatActivity() {
             }
         }
 
-        binding.cardImage.setOnClickListener {
-            getSystemContent.launch("image/*")
-        }
     }
 
     private val getSystemContent = registerForActivityResult(ActivityResultContracts.GetContent()) {

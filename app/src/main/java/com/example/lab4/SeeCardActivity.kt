@@ -15,16 +15,12 @@ class SeeCardActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val position = intent.getIntExtra("position", 0)
-        val cards = Model.cards
-        val card = cards.get(position)
+        val card = Model.cards.get(position)
 
-        binding.cardQuestion.text =
-            getString(R.string.questionField, card.question)
-        binding.cardExample.text =
-            getString(R.string.exampleField, card.example)
+        binding.cardQuestion.text = getString(R.string.questionField, card.question)
+        binding.cardExample.text = getString(R.string.exampleField, card.example)
         binding.cardAnswer.text = getString(R.string.answerField, card.answer)
-        binding.cardTranslation.text =
-            getString(R.string.translationField, card.translation)
+        binding.cardTranslation.text = getString(R.string.translationField, card.translation)
         binding.cardThumbnail.setImageURI(card.imageURI)
 
         binding.editButton.setOnClickListener {
@@ -33,6 +29,10 @@ class SeeCardActivity : AppCompatActivity() {
             }.also {
                 startActivity(it)
             }
+        }
+
+        binding.backButton.setOnClickListener {
+            onBackPressed()
         }
     }
 }
