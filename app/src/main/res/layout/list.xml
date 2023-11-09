@@ -18,6 +18,5 @@
             tools:listitem="@layout/card" />
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

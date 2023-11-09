@@ -16,7 +16,7 @@ class AdapterRecyclerView(private var cards: List<Card>) : //Параметр - 
     RecyclerView.Adapter<AdapterRecyclerView.MyViewHolder>() {
     //RecyclerView.Adapter - базовый класс для создания адаптеров, RecyclerView - для структуры отображения списка элементов,
     //CustomRecyclerAdapter определяет, как данные будут связываться в элементе
-    //С помощью RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() идёт расширение и переопределение RecyclerView.Adapter
+    //С помощью ecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() идёт расширение и переопределение RecyclerView.Adapter
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) { //Тут лежат элементы интерфейса карточки, которая лежит в списке
         val thumbnailImage: ImageView = itemView.findViewById(R.id.pictureSmall)
         val largeTextView: TextView = itemView.findViewById(R.id.textAbove)
@@ -41,6 +41,11 @@ class AdapterRecyclerView(private var cards: List<Card>) : //Параметр - 
         }
         holder.largeTextView.text = card.answer
         holder.smallTextView.text = card.translation
+        holder.itemView.setOnClickListener { //Если нажмётся на элемент
+            val intent = Intent(it.context, CardSee::class.java) //Откроется просмотр карточки, что описан в классе "SeeCardActivity"
+            intent.putExtra("position", position) //Так же передаётся id карточки
+            ContextCompat.startActivity(it.context, intent, Bundle()) //Bundle() - для передачи данных
+        }
     }
 
     fun refreshCardsViewWith(cards: List<Card>) { //Обновление списка

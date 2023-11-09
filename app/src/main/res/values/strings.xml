@@ -3,4 +3,12 @@
     <string name="textAbove">Word</string>
     <string name="textBelow">Translation</string>
     <string name="addButton">addButton</string>
+    <string name="seeingCard">Viewing Card</string>
+    <string name="currOrPlaceholder">Current picture or placeholder</string>
+    <string name="questionField">Question: %1$s</string>
+    <string name="exampleField">Hint: %1$s</string>
+    <string name="answerField">Answer: %1$s</string>
+    <string name="translationField">Translation: %1$s</string>
+    <string name="editButton">editButton</string>
+    <string name="backButton">backButton</string>
 </resources>
