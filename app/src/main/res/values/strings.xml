@@ -11,4 +11,9 @@
     <string name="translationField">Translation: %1$s</string>
     <string name="editButton">editButton</string>
     <string name="backButton">backButton</string>
+    <string name="addingCard">Adding Card</string>
+    <string name="enterTranslation">Enter Translation</string>
+    <string name="enterAnswer">Enter Answer</string>
+    <string name="enterExample">Enter Example</string>
+    <string name="enterQuestion">Enter Question</string>
 </resources>

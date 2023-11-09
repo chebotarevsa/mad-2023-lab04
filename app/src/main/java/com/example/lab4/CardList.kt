@@ -1,5 +1,6 @@
 package com.example.lab4
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,11 +25,11 @@ class CardList : AppCompatActivity() {
         adapter = AdapterRecyclerView(cards) //Установка адаптера
         recyclerView.adapter = adapter
 
-//        binding.addbuttonid.setOnClickListener {//Кнопка добавления нового элемента
-//            Intent(this, AddCard::class.java).also {
-//                startActivity(it)
-//            }
-//        }
+        binding.addButton.setOnClickListener {//Кнопка добавления нового элемента
+            Intent(this, CardAdd::class.java).also {
+                startActivity(it)
+            }
+        }
     }
 
     override fun onResume() { //Обновление списка

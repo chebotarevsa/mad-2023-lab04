@@ -1,6 +1,6 @@
 package com.example.lab4
 
-//import android.net.Uri
+import android.net.Uri
 
 object Model {
     private val _cards = mutableListOf( //Создание списка mutableListOf
@@ -26,38 +26,14 @@ object Model {
         }
     }
 
-//    fun addCard(card: Card) { //Всё просто - добавления нового элемента
-//        _cards.add(card)
-//    }
-//
-//    fun updateCardList(card1: Card, card2: Card) { //Всё не просто - передача 2-х карточек
-//        val num = _cards.indexOf(card1) //Берём id первой карты
-//        _cards.remove(card1) //Удаляем первую и на место первой ставим вторую
-//        _cards.add(num, card2) //НО ЭТА ФУНКЦИЯ НЕ ИСПОЛЬЗЕТСЯ???
-//    }
-//
-//    fun updateCardList(position: Int, card: Card) { //То же самое: удаление по id карточки и замена
-//        _cards.remove(_cards[position])
-//        _cards.add(position, card)
-//    }
-//
-//    fun updateCard(
-//        oldCard: Card,
-//        question: String,
-//        example: String,
-//        answer: String,
-//        translation: String,
-//        imageURI: Uri?
-//    ): Card { //Тип, который функция будет возвращать
-//        return oldCard.copy(oldCard.id, question, example, answer, translation, imageURI) //Копирование всей переданной карочки
-//        //и вставка в копированный элемент тех значений, что были переданы вместе с функцией
-//    }
-//
-//    fun createNewCard(
-//        question: String, example: String, answer: String, translation: String, imageURI: Uri?
-//    ): Card {
-//        val nextId = _cards.maxBy { it.id }.id + 1 //Ищется максимальный id среди всех элементов списка, найденное присваивается nextId, после +1
-//        val card = Card(nextId, question, example, answer, translation, imageURI)
-//        return card
-//    }
+    fun addCard(card: Card) { //Всё просто - добавления нового элемента
+        _cards.add(card)
+    }
+    fun createNewCard(
+        question: String, example: String, answer: String, translation: String, imageURI: Uri?
+    ): Card {
+        val nextId = _cards.maxBy { it.id }.id + 1 //Ищется максимальный id среди всех элементов списка, найденное присваивается nextId, после +1
+        val card = Card(nextId, question, example, answer, translation, imageURI)
+        return card
+    }
 }

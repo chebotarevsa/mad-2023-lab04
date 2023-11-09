@@ -16,6 +16,9 @@
             android:name=".CardSee"
             android:exported="false" />
         <activity
+            android:name=".CardAdd"
+            android:exported="false" />
+        <activity
             android:name=".CardList"
             android:exported="true">
             <intent-filter>
