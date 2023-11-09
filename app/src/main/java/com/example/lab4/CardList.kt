@@ -24,11 +24,6 @@ class CardList : AppCompatActivity() {
         adapter = AdapterRecyclerView(cards) //Установка адаптера
         recyclerView.adapter = adapter
 
-//        binding.addbuttonid.setOnClickListener {//Кнопка добавления нового элемента
-//            Intent(this, AddCard::class.java).also {
-//                startActivity(it)
-//            }
-//        }
     }
 
     override fun onResume() { //Обновление списка

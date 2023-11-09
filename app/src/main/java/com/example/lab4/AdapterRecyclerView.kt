@@ -46,6 +46,19 @@ class AdapterRecyclerView(private var cards: List<Card>) : //Параметр - 
             intent.putExtra("position", position) //Так же передаётся id карточки
             ContextCompat.startActivity(it.context, intent, Bundle()) //Bundle() - для передачи данных
         }
+        holder.deleteImage.setOnClickListener {//При нажатии на элемент корзинки
+            AlertDialog.Builder(it.context).setIcon(android.R.drawable.ic_dialog_alert) //Запуск всплывающего окошка
+                .setTitle("Вы действительно хотите удалить карточку?")
+                .setMessage("Будет удалена карточка:\n ${card.answer} / ${card.translation}")
+                .setPositiveButton("Да") { _, _ ->
+                    Model.removeCard(card.id)
+                    refreshCardsViewWith(Model.cards)
+                }.setNegativeButton("Нет") { _, _ ->
+                    Toast.makeText(
+                        it.context, "Удаление отменено", Toast.LENGTH_LONG
+                    ).show()
+                }.show() //Очень интересная настройка всплывающего окна
+        }
     }
 
     fun refreshCardsViewWith(cards: List<Card>) { //Обновление списка
