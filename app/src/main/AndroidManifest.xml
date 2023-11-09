@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AppCompat.Light"
         tools:targetApi="34">
         <activity
+            android:name=".CardEdit"
+            android:exported="false" />
+        <activity
             android:name=".CardSee"
             android:exported="false" />
         <activity

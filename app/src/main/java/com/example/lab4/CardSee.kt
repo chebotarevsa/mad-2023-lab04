@@ -23,6 +23,14 @@ class CardSee : AppCompatActivity() {
         binding.textTranslation.text = getString(R.string.translationField, card.translation)
         binding.picture.setImageURI(card.imageURI)
 
+        binding.buttonEdit.setOnClickListener { //Кнопка редактирования
+            Intent(this, CardEdit::class.java).apply {
+                putExtra("position", position)
+            }.also {
+                startActivity(it) //Сразу запустить активность - редактирование
+            }
+        }
+
         binding.buttonBack.setOnClickListener {
             onBackPressed() //На шаг назад
         }
