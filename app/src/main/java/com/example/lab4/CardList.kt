@@ -12,6 +12,7 @@ class CardList : AppCompatActivity() {
     lateinit var adapter: AdapterRecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide() //Скрыть верхнюю панель с названием приложения
         super.onCreate(savedInstanceState)
         binding = ListBinding.inflate(layoutInflater) //Всё по стандарту: раздуваем хмл во вью
         setContentView(binding.root)

@@ -33,7 +33,7 @@ object Model {
     fun updateCardList(card1: Card, card2: Card) { //Всё не просто - передача 2-х карточек
         val num = _cards.indexOf(card1) //Берём id первой карты
         _cards.remove(card1) //Удаляем первую и на место первой ставим вторую
-        _cards.add(num, card2) //НО ЭТА ФУНКЦИЯ НЕ ИСПОЛЬЗЕТСЯ???
+        _cards.add(num, card2)
     }
 
     fun updateCardList(position: Int, card: Card) { //То же самое: удаление по id карточки и замена
