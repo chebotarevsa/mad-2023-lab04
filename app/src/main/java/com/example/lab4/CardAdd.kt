@@ -12,6 +12,7 @@ class CardAdd : AppCompatActivity() {
     private var imageUri: Uri? = null //? - разрешение на нулевое значение - может позднее инициализировать, а может вообще нет
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         binding = CardaddBinding.inflate(layoutInflater) //Надувание из хмл в вью
         setContentView(binding.root)

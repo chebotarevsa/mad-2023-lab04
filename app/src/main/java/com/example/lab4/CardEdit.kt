@@ -12,6 +12,7 @@ class CardEdit : AppCompatActivity() {
     lateinit var binding: CardeditBinding
     private var imageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         binding = CardeditBinding.inflate(layoutInflater)
         setContentView(binding.root)

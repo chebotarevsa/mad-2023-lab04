@@ -10,6 +10,7 @@ class CardSee : AppCompatActivity() {
     lateinit var binding: CardseeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportActionBar?.hide()
         super.onCreate(savedInstanceState)
         binding = CardseeBinding.inflate(layoutInflater)
         setContentView(binding.root)
