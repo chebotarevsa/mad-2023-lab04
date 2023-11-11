@@ -37,7 +37,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="90dp"
         android:layout_marginTop="50dp"
-        android:text="Вопрос"
+        android:text="@string/Question"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -66,7 +66,7 @@
         android:layout_height="21dp"
         android:layout_marginStart="68dp"
         android:layout_marginTop="80dp"
-        android:text="Подсказка"
+        android:text="@string/Help"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question" />
@@ -86,7 +86,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="88dp"
         android:layout_marginTop="36dp"
-        android:text="Ответ"
+        android:text="@string/Answer"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/example" />
@@ -97,7 +97,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="68dp"
         android:layout_marginTop="20dp"
-        android:text="Перевод"
+        android:text="@string/Translate"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/answer" />
