@@ -1,5 +1,6 @@
 package com.example.lab4mobile.Data
 
+import android.graphics.Bitmap
 import java.util.UUID
 
 typealias CardsListener = (cards: List<TermCard>) -> Unit
@@ -20,7 +21,7 @@ object CardsRepository {
             example = "A school ...",
             answer = "Bus",
             translate = "Автобус",
-            image = ""
+            image = null
         )
         cards.add(card1)
 
@@ -30,7 +31,7 @@ object CardsRepository {
             example = "The ... of Cambridge",
             answer = "University",
             translate = "Университет",
-            image = ""
+            image = null
         )
         cards.add(card2)
 
@@ -51,7 +52,7 @@ object CardsRepository {
     }
 
     //создание новой карточки
-    fun createNewCard(question: String,example: String,answer: String,translate: String,image: String): TermCard{
+    fun createNewCard(question: String,example: String,answer: String,translate: String,image: Bitmap?): TermCard{
         val id = UUID.randomUUID().toString()
         return TermCard(id,question,example,answer,translate,image)
     }
@@ -59,6 +60,11 @@ object CardsRepository {
     //добавление карточки в список
     fun addCard(card: TermCard) {
         cards.add(card)
+    }
+
+    fun replaceCard(card:TermCard, index: Int){
+        cards.removeAt(index)
+        cards.add(index, card)
     }
 
     private fun notifyChanges() {

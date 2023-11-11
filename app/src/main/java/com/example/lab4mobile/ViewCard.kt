@@ -1,31 +1,49 @@
 package com.example.lab4mobile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
+import com.example.lab4mobile.Data.CardsRepository
+import com.example.lab4mobile.databinding.ViewCardBinding
 
 class ViewCard : AppCompatActivity() {
+    private lateinit var binding: ViewCardBinding
+    private var index = NEW_CARD
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.view_card)
-        // Получите данные из интента
-        val question = intent.getStringExtra("question")
-        val example = intent.getStringExtra("example")
-        val answer = intent.getStringExtra("answer")
-        val translate = intent.getStringExtra("translate")
-        val image = intent.getStringExtra("image")
+        binding = ViewCardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val imageView = findViewById<ImageView>(R.id.imageView3)
-        val questionTextView = findViewById<TextView>(R.id.questionField)
-        val exampleTextView = findViewById<TextView>(R.id.exampleField)
-        val answerTextView = findViewById<TextView>(R.id.answerView)
-        val translateTextView = findViewById<TextView>(R.id.translateView)
+        //получение данных из интента
+        index = intent.getIntExtra("index", NEW_CARD)
+        //initView()
+    }
 
-        //проблема с полечением картинки! Уточнить!
-        questionTextView.text = question
-        exampleTextView.text = example
-        answerTextView.text = answer
-        translateTextView.text = translate
+    override fun onResume() {
+        super.onResume()
+        initView()
+    }
+
+
+    private fun initView() {
+        val card = CardsRepository.getCards()[index]
+
+        binding.questionField.text = card.question
+        binding.exampleField.text = card.example
+        binding.answerView.text = card.answer
+        binding.translateView.text = card.translate
+
+        if (card.image != null) {
+            binding.imageView3.setImageBitmap(card.image)
+        } else {
+            binding.imageView3.setImageResource(R.drawable.ic_image)
+        }
+
+        binding.button.setOnClickListener {
+            val intent = Intent(this, AddCardActivity::class.java)
+            intent.putExtra("index", index)
+            startActivity(intent)
+        }
     }
 }

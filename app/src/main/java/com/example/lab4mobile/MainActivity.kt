@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lab4mobile.Data.CallbackFun
 import com.example.lab4mobile.Data.CardsAdapter
 import com.example.lab4mobile.Data.CardsListener
 import com.example.lab4mobile.Data.CardsRepository
@@ -23,24 +24,33 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = CardsAdapter()
+        adapter = CardsAdapter(adapterCallBack)
         adapter.setItem(CardsRepository.getCards())
         val layoutManager = LinearLayoutManager(this)
         binding.RecyclerView.layoutManager = layoutManager
         binding.RecyclerView.adapter = adapter
 
-    val button = binding.root.findViewById<Button>(R.id.button)
-    button.setOnClickListener {
-        val intent = Intent(this, AddCardActivity::class.java)
-        startActivity(intent)
+        val button = binding.button
+        button.setOnClickListener {
+            val intent = Intent(this, AddCardActivity::class.java)
+            startActivity(intent)
         }
     }
-
-    //удаление карточки
-//    val delete = ContextCompat.getDrawable(binding.root.context, R.drawable.ic_delete)
 
     override fun onResume() {
         super.onResume()
         adapter.setItem(CardsRepository.getCards())
+    }
+
+    private val adapterCallBack =  object : CallbackFun {
+        override fun deleteCard(card: TermCard) {
+            CardsRepository.deleteCard(card)
+        }
+
+        override fun showCard(index: Int) {
+            val intent = Intent(this@MainActivity, ViewCard::class.java)
+            intent.putExtra("index", index)
+            this@MainActivity.startActivity(intent)
+        }
     }
 }
