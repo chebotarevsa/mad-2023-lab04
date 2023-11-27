@@ -21,7 +21,7 @@ class CardList : AppCompatActivity() {
 
         val recyclerView: RecyclerView = binding.recyclerId
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AdapterRecyclerView(cards, this) // Pass the context parameter here
+        adapter = AdapterRecyclerView(cards, this)
         recyclerView.adapter = adapter
 
         binding.addButton.setOnClickListener {
@@ -29,6 +29,11 @@ class CardList : AppCompatActivity() {
                 startActivity(it)
             }
         }
+    }
+
+    fun removeCard(card: Card) {
+        Model.removeCard(card.id)
+        adapter.refreshCardsViewWith(Model.cards)
     }
 
     override fun onResume() {
