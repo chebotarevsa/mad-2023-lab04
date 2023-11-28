@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +11,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class Recycler(private var cards: List<Card>) :
+class Recycler(private var cards: List<Card>, private val context: Context) :
     RecyclerView.Adapter<Recycler.MyViewHolder>() {
+
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val thumbnailImage: ImageView = itemView.findViewById(R.id.thumbnail)
         val largeTextView: TextView = itemView.findViewById(R.id.textViewLarge)
@@ -44,29 +47,55 @@ class Recycler(private var cards: List<Card>) :
             ContextCompat.startActivity(it.context, intent, Bundle())
         }
         holder.deleteImage.setOnClickListener {
-            val alertDialog = AlertDialog.Builder(it.context)
-                .setTitle("Удаление карточки?")
-                .setMessage("Вы действительно хотите удалить карточку:\n ${card.translation}")
-                .setPositiveButton("Да") { _, _ ->
-                    Cards.removeCard(card.id)
-                    refreshCardsViewWith(Cards.cards)
-                }.setNegativeButton("Нет") { _, _ ->
-                    Toast.makeText(
-                        it.context, "Удаление отменено", Toast.LENGTH_LONG
-                    ).show()
-                }.create()
+            showDeleteConfirmationDialog(card, position)
+        }
+    }
 
-            alertDialog.setOnShowListener {
-                val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                positiveButton.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.red))
+    fun showDeleteConfirmationDialog(card: Card, position: Int) {
+        val alertDialog = AlertDialog.Builder(context)
+            .setTitle("Удаление карточки?")
+            .setMessage("Вы действительно хотите удалить карточку:\n ${card.translation}")
+            .setPositiveButton("Да") { _, _ ->
+                Cards.removeCard(card.id)
+                refreshCardsViewWith(Cards.cards)
+            }.setNegativeButton("Нет") { _, _ ->
+                notifyDataSetChanged()
+            }.create()
 
-                val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                negativeButton.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
-            }
+        alertDialog.setOnShowListener {
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setTextColor(ContextCompat.getColor(context, R.color.red))
 
-            alertDialog.show()
+            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            negativeButton.setTextColor(ContextCompat.getColor(context, R.color.green))
         }
 
+        alertDialog.show()
+    }
+
+    fun enableSwipeToDelete(recyclerView: RecyclerView) {
+        val swipeToDeleteCallback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val deletedCard = cards[position]
+
+                showDeleteConfirmationDialog(deletedCard, position)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
     fun refreshCardsViewWith(cards: List<Card>) {

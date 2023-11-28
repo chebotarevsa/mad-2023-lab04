@@ -20,8 +20,12 @@ class CardListActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView = binding.recyclerid
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = Recycler(cards)
+
+        adapter = Recycler(cards, this)
+
         recyclerView.adapter = adapter
+
+        adapter.enableSwipeToDelete(recyclerView)
 
         binding.addButton.setOnClickListener {
             Intent(this, AddCardActivity::class.java).also {
