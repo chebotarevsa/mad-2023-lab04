@@ -26,25 +26,25 @@ class AddActivity : AppCompatActivity() {
                 binding.enterQuestion.text.toString()
                     .isNotEmpty() -> binding.enterQuestion.text.toString()
 
-                else -> "Поле вопроса отсутствует"
+                else -> getString(R.string.question_field_empty)
             }
             val example = when {
                 binding.enterExample.text.toString()
                     .isNotEmpty() -> binding.enterExample.text.toString()
 
-                else -> "Поле примера отсутствует"
+                else -> getString(R.string.example_field_empty)
             }
             val answer = when {
                 binding.enterAnswer.text.toString()
                     .isNotEmpty() -> binding.enterAnswer.text.toString()
 
-                else -> "Поле ответа отсутствует"
+                else -> getString(R.string.answer_field_empty)
             }
             val translation = when {
                 binding.enterTranslation.text.toString()
                     .isNotEmpty() -> binding.enterTranslation.text.toString()
 
-                else -> "Поле перевода отсутствует"
+                else -> getString(R.string.translation_field_empty)
             }
             val newCard = CardService.createNewCard(
                 question, example, answer, translation, imageUri

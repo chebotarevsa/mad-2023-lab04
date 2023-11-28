@@ -2,9 +2,9 @@ package com.example.lab4
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.example.lab4.databinding.ActivityEditBinding
 
 class EditActivity : AppCompatActivity() {
@@ -36,28 +36,29 @@ class EditActivity : AppCompatActivity() {
                 binding.questionField.text.toString()
                     .isNotEmpty() -> binding.questionField.text.toString()
 
-                else -> R.string.question_field_empty
+                else -> getString(R.string.question_field_empty)
             }
             val example = when {
                 binding.exampleField.text.toString()
                     .isNotEmpty() -> binding.exampleField.text.toString()
 
-                else -> R.string.example_field_empty
+                else -> getString(R.string.example_field_empty)
             }
             val answer = when {
                 binding.answerField.text.toString()
                     .isNotEmpty() -> binding.answerField.text.toString()
 
-                else -> R.string.answer_field_empty
+                else -> getString(R.string.answer_field_empty)
             }
             val translation = when {
                 binding.translationField.text.toString()
                     .isNotEmpty() -> binding.translationField.text.toString()
 
-                else -> R.string.translation_field_empty
+                else -> getString(R.string.translation_field_empty)
             }
             val newCard = CardService.updateCard(
-                card, question.toString(), example.toString(), answer.toString(), translation.toString(), imageUri
+                card,
+                question, example, answer, translation, imageUri
             )
             CardService.updateCardList(position, newCard)
             Intent(this, SeeActivity::class.java).apply {
