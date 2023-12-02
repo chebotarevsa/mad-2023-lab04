@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class Recycler(private var cards: List<Card>, private val context: Context) :
+class Recycler(private var cards: List<Card>, private val context: Context, private val deleteDialog: (card:Card)-> Unit) :
     RecyclerView.Adapter<Recycler.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,30 +47,13 @@ class Recycler(private var cards: List<Card>, private val context: Context) :
             ContextCompat.startActivity(it.context, intent, Bundle())
         }
         holder.deleteImage.setOnClickListener {
-            showDeleteConfirmationDialog(card, position)
+            deleteDialog(card)
         }
     }
 
-    fun showDeleteConfirmationDialog(card: Card, position: Int) {
-        val alertDialog = AlertDialog.Builder(context)
-            .setTitle("Удаление карточки?")
-            .setMessage("Вы действительно хотите удалить карточку:\n ${card.translation}")
-            .setPositiveButton("Да") { _, _ ->
-                Cards.removeCard(card.id)
-                refreshCardsViewWith(Cards.cards)
-            }.setNegativeButton("Нет") { _, _ ->
-                notifyDataSetChanged()
-            }.create()
-
-        alertDialog.setOnShowListener {
-            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            positiveButton.setTextColor(ContextCompat.getColor(context, R.color.red))
-
-            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-            negativeButton.setTextColor(ContextCompat.getColor(context, R.color.green))
-        }
-
-        alertDialog.show()
+    fun setCards(cards: List<Card>){
+        this.cards=cards
+        notifyDataSetChanged()
     }
 
     fun enableSwipeToDelete(recyclerView: RecyclerView) {
@@ -90,7 +73,7 @@ class Recycler(private var cards: List<Card>, private val context: Context) :
                 val position = viewHolder.adapterPosition
                 val deletedCard = cards[position]
 
-                showDeleteConfirmationDialog(deletedCard, position)
+                deleteDialog(deletedCard)
             }
         }
 
