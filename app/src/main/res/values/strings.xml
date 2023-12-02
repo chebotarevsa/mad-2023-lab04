@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Lab 4</string>
+    <string name="setQuestion">Enter question</string>
+    <string name="setExample">Enter example</string>
+    <string name="setAnswer">Enter answer</string>
+    <string name="setTranslation">Enter translation</string>
+    <string name="Question">Question</string>
+    <string name="Example">Example</string>
+    <string name="Answer">Answer</string>
+    <string name="Translate">Translate</string>
+    <string name="questionField">Question: %1$s</string>
+    <string name="exampleField">Example: %1$s</string>
+    <string name="answerField">Answer: %1$s</string>
+    <string name="translationField">Translation: %1$s</string>
+</resources>
