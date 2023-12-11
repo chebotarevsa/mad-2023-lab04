@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Моё приложение</string>
+    <string name="action_add">Добавить</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_edit">Редактировать</string>
+    <string name="hint_enter_question">Введите вопрос</string>
+    <string name="hint_enter_hint">Введите подсказку</string>
+    <string name="hint_enter_answer">Введите ответ</string>
+    <string name="hint_enter_translation">Введите перевод</string>
+    <string name="sample_question">Вопрос</string>
+    <string name="sample_hint">Подсказка</string>
+    <string name="sample_answer">Ответ</string>
+    <string name="sample_translation">Перевод</string>
+    <string name="image_description">Описание фото</string>
+</resources>

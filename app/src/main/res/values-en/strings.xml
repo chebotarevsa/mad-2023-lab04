@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="action_add">Add</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="hint_enter_question">Enter the question</string>
+    <string name="hint_enter_hint">Enter a hint</string>
+    <string name="hint_enter_answer">Enter the answer</string>
+    <string name="hint_enter_translation">Enter the translation</string>
+    <string name="image_description">Image Description</string>
+    <string name="sample_question">Sample Question</string>
+    <string name="sample_hint">Sample Hint</string>
+    <string name="sample_answer">Sample Answer</string>
+    <string name="sample_translation">Sample Translation</string>
+   </resources>
