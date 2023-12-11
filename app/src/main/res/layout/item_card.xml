@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding">
+
+        <ImageView
+            android:id="@+id/imageViewItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_description"
+            android:maxWidth="@dimen/max_width"
+            android:maxHeight="@dimen/max_width"
+            android:src="@drawable/placeholder" />
+
+        <TextView
+            android:id="@+id/textViewItemPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imageViewItem"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_toEndOf="@id/imageViewItem"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/sample_translation"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+        <TextView
+            android:id="@+id/textViewItemSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewItemPrimary"
+            android:layout_alignStart="@id/textViewItemPrimary"
+            android:layout_marginTop="@dimen/default_margin"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@string/sample_answer"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+        <ImageButton
+            android:id="@+id/buttonDeleteItem"
+            android:layout_width="@dimen/width_height"
+            android:layout_height="@dimen/width_height"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/action_delete"
+            android:src="@drawable/delete"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
