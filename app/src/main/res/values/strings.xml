@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Anki App</string>
+    <string name="enter_a_question">Enter a question</string>
+    <string name="enter_an_example">Enter an example</string>
+    <string name="enter_the_answer">Enter the answer</string>
+    <string name="enter_the_translation">Enter the translation</string>
+</resources>
